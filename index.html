@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#142b4b">
+<title>公會活動中心</title>
+<style>
+:root{--navy:#142b4b;--navy2:#203e65;--ink:#1e2b40;--muted:#66758b;--bg:#f2f5fa;--line:#dce4ef;--white:#fff;--gold:#e69a22;--purple:#8652c8;--red:#d94c50;--blue:#2878d0;--shadow:0 8px 24px #152b4b12}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans TC",sans-serif}
+button{font:inherit;cursor:pointer}
+.hero{background:linear-gradient(115deg,#102744,#274c75);color:#fff;padding:24px 22px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 80% 10%,#8cb5df30,transparent 40%);pointer-events:none}
+.hero-inner{max-width:1240px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px;position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:16px}.crest{width:58px;height:58px;border:2px solid #e9bd67;border-radius:17px;display:grid;place-items:center;color:#ffd77d;font-size:32px;background:#ffffff10}
+.brand h1{font-size:clamp(26px,4vw,40px);margin:0;letter-spacing:.04em}.brand p{margin:5px 0 0;color:#d4e1f1;font-size:14px}
+.clock{min-width:250px;background:#0d2039;border:1px solid #6383a8;border-radius:14px;padding:12px 16px;text-align:right;box-shadow:0 8px 24px #0002}
+.clock-label{font-size:12px;color:#9fc4ed}.clock-time{font-size:22px;font-weight:800;letter-spacing:.03em;font-variant-numeric:tabular-nums}.clock-date{font-size:13px;color:#d9e6f5;margin-top:2px}
+.wrap{max-width:1240px;margin:24px auto;padding:0 18px 36px}
+.section{margin-top:26px}.section-title{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:22px;color:#183657}.section-title .ico{width:34px;height:34px;border-radius:10px;background:#e0eafa;display:grid;place-items:center}
+.section-sub{margin:-7px 0 14px;color:var(--muted);font-size:13px}
+.event-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.event-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+.event-image{height:172px;background:#dce6f3;overflow:hidden}.event-image img{width:100%;height:100%;object-fit:cover;display:block}
+.event-body{padding:16px}.event-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.event-heading h3{margin:0;font-size:19px}.tag{font-size:11px;font-weight:800;padding:5px 9px;border-radius:99px;background:#f1f3f8;color:#56647a;white-space:nowrap}
+.event-card.cheese{border-top:4px solid var(--gold)}.event-card.medicine{border-top:4px solid var(--purple)}.event-card.ghoul{border-top:4px solid var(--red)}
+.event-meta{display:grid;gap:8px;margin:13px 0;color:#31435d;font-size:14px}.event-meta b{color:#172c48}
+.event-desc{margin:0;padding:11px 12px;background:#f5f7fb;border-radius:10px;font-size:13px;line-height:1.65;color:#4d5c70}
+.calendar-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:16px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.panel-head{background:var(--navy);color:#fff;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.panel-head h3{margin:0;font-size:18px}.month-nav{display:flex;align-items:center;gap:10px}.month-nav button{width:30px;height:30px;border:1px solid #ffffff50;background:#ffffff12;color:#fff;border-radius:8px;font-size:18px}
+.month-label{min-width:112px;text-align:center;font-weight:800}
+.calendar-content{padding:12px}
+.weekdays,.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.weekdays div{text-align:center;padding:8px 0;font-size:12px;font-weight:800;color:#52647c;background:#f0f4f9;border-radius:7px}
+.day{border:1px solid #e5ebf3;background:#fff;border-radius:8px;min-height:83px;padding:6px 5px;text-align:left;overflow:hidden;color:var(--ink)}
+.day:hover{border-color:#8ba9ce;background:#f7faff}.day.outside{background:#f7f8fa;color:#a5afbd}.day.today{box-shadow:inset 0 0 0 2px #3478c8}.day.selected{background:#edf5ff;border-color:#3478c8}
+.day-num{font-size:12px;font-weight:800}.day-events{display:grid;gap:3px;margin-top:5px}
+.day-event{display:block;padding:3px 4px;border-radius:4px;font-size:10px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}
+.day-event.cheese{background:#df941b}.day-event.medicine{background:#8450c4}.day-event.ghoul{background:#d84b50}.day-event.guild{background:#2878d0}
+.calendar-legend{display:flex;gap:12px;flex-wrap:wrap;padding:0 13px 13px;color:#617087;font-size:11px}
+.legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.detail-body{padding:15px}.detail-date{font-size:13px;color:var(--muted);margin-bottom:12px}
+.activity{padding:12px 0;border-bottom:1px solid #edf0f5}.activity:last-child{border:0}.activity strong{display:block;font-size:14px}.activity span{display:block;color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5}
+.no-event{font-size:13px;color:var(--muted);line-height:1.7;padding:12px 0}
+.week-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.week-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.week-banner{padding:10px;color:#fff;font-size:14px;font-weight:900;text-align:center}
+.week-card:nth-child(1) .week-banner{background:#2674c9}.week-card:nth-child(2) .week-banner{background:#25875b}.week-card:nth-child(3) .week-banner{background:#8152bd}.week-card:nth-child(4) .week-banner{background:#dc8120}.week-card:nth-child(5) .week-banner{background:#d94b58}.week-card:nth-child(6) .week-banner{background:#1689a6}
+.week-icon{height:94px;display:grid;place-items:center;background:linear-gradient(135deg,#f4f7fc,#e8eef7);font-size:50px}
+.week-card h3{font-size:15px;text-align:center;margin:12px 6px 5px}.week-card p{font-size:11px;line-height:1.5;color:var(--muted);text-align:center;margin:0 8px 13px}
+.note{margin-top:14px;background:#eaf3fc;border:1px solid #d4e5f7;border-radius:10px;padding:10px 12px;font-size:12px;color:#42617f;line-height:1.6}
+footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
+@media(max-width:900px){.calendar-layout{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.hero-inner{align-items:flex-start;flex-direction:column}.clock{width:100%;text-align:left}.event-grid{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:0 11px 28px}.calendar-content{padding:7px}.day{min-height:68px;padding:5px 3px}.day-event{font-size:9px;padding:3px 2px}.weekdays{gap:2px}.days{gap:2px}.section-title{font-size:19px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand"><div class="crest">⚜</div><div><h1>公會活動中心</h1><p>掌握活動時間・輕鬆規劃・一起變強！</p></div></div>
+    <div class="clock" aria-live="off"><div class="clock-label">◷　現在時間</div><div class="clock-time" id="clockTime">載入中…</div><div class="clock-date" id="clockDate"></div></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="section">
+    <h2 class="section-title"><span class="ico">📣</span>重要活動介紹</h2>
+    <div class="event-grid">
+      <article class="event-card cheese">
+        <div class="event-image"><img src="images/cheese_trap.jpg" alt="起司陷阱活動插畫"></div>
+        <div class="event-body"><div class="event-heading"><h3>🧀 起司陷阱</h3><span class="tag">每兩天一次</span></div>
+          <div class="event-meta"><div>◷　時間：<b>12:00 / 22:00</b></div><div>↻　頻率：<b>每兩天一次</b></div></div>
+          <p class="event-desc">在指定時間內參與活動，爭取獎勵！中午或晚上擇方便的時段參加，別忘了確認當天是否開放。</p>
+        </div>
+      </article>
+      <article class="event-card medicine">
+        <div class="event-image"><img src="images/medicine_battle.jpg" alt="秘藥爭奪戰活動插畫"></div>
+        <div class="event-body"><div class="event-heading"><h3>🧪 秘藥爭奪戰</h3><span class="tag">每週一次</span></div>
+          <div class="event-meta"><div>◷　週五：<b>19:00</b></div><div>◷　週六：<b>09:00</b></div><div>♟　參與限制：<b>每人只能參加其中一場</b></div></div>
+          <p class="event-desc">週五晚上與週六早上兩個時段擇一參加，請勿重複報名或進場，讓其他成員也有參與機會。</p>
+        </div>
+      </article>
+      <article class="event-card ghoul">
+        <div class="event-image"><img src="images/ghoul_siege.jpg" alt="屍鬼圍城活動插畫"></div>
+        <div class="event-body"><div class="event-heading"><h3>🧟 屍鬼圍城</h3><span class="tag">每三天一次</span></div>
+          <div class="event-meta"><div>◷　時間：<b>21:30（晚上）</b></div><div>↻　頻率：<b>從 10/29 起，每三天一次</b></div></div>
+          <p class="event-desc">屍鬼來襲時，請依公會公告安排隊伍與防守。活動開始前記得召回採集隊伍，並確認主力部隊已準備完成。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><span class="ico">🗓️</span>活動日曆</h2>
+    <p class="section-sub">日期會依照電腦／手機的目前日期自動更新；點選日期可查看當天活動。</p>
+    <div class="calendar-layout">
+      <div class="panel">
+        <div class="panel-head"><h3>活動月曆</h3><div class="month-nav"><button id="prevMonth" aria-label="上個月">‹</button><span class="month-label" id="monthLabel"></span><button id="nextMonth" aria-label="下個月">›</button></div></div>
+        <div class="calendar-content">
+          <div class="weekdays"><div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div></div>
+          <div class="days" id="calendarDays"></div>
+        </div>
+        <div class="calendar-legend">
+          <span><i class="legend-dot" style="background:#df941b"></i>起司陷阱</span>
+          <span><i class="legend-dot" style="background:#8450c4"></i>秘藥爭奪戰</span>
+          <span><i class="legend-dot" style="background:#d84b50"></i>屍鬼圍城</span>
+          <span><i class="legend-dot" style="background:#2878d0"></i>跨服／公會對決</span>
+        </div>
+      </div>
+      <aside class="panel">
+        <div class="panel-head"><h3 id="detailTitle">當日活動</h3><button id="todayButton" style="border:1px solid #ffffff55;background:#ffffff12;color:#fff;border-radius:8px;padding:5px 9px;font-size:12px">回到今天</button></div>
+        <div class="detail-body"><div class="detail-date" id="detailDate"></div><div id="detailEvents"></div></div>
+      </aside>
+    </div>
+    <div class="note">※ 起司陷阱以 2026/10/28 為週期基準，每兩天 12:00、22:00；屍鬼圍城自 2026/10/29 起，每三天 21:30。若遊戲實際公告調整，請以遊戲內公告為準。</div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title"><span class="ico">⚔️</span>每日公會對決</h2>
+    <p class="section-sub">每日對應不同任務項目，記得依照當天主題安排升級與資源。</p>
+    <div class="week-grid">
+      <article class="week-card"><div class="week-banner">星期一</div><div class="week-icon">🐦‍⬛</div><h3>烏鴉升級</h3><p>提升烏鴉等級，增加資源收益。</p></article>
+      <article class="week-card"><div class="week-banner">星期二</div><div class="week-icon">🏰</div><h3>建築升級</h3><p>升級各種建築，強化城池實力。</p></article>
+      <article class="week-card"><div class="week-banner">星期三</div><div class="week-icon">🔮</div><h3>科技升級</h3><p>研究科技，提升整體戰鬥力。</p></article>
+      <article class="week-card"><div class="week-banner">星期四</div><div class="week-icon">🛡️</div><h3>英雄升級</h3><p>提升英雄等級與技能效果。</p></article>
+      <article class="week-card"><div class="week-banner">星期五</div><div class="week-icon">🪖</div><h3>士兵生產</h3><p>生產更多士兵，擴充軍力。</p></article>
+      <article class="week-card"><div class="week-banner">星期六</div><div class="week-icon">⚔️</div><h3>士兵戰爭</h3><p>參與戰鬥，爭取公會對決積分。</p></article>
+    </div>
+  </section>
+  <footer>公會活動中心 · 活動時間以遊戲內公告為準</footer>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const fmt2 = n => String(n).padStart(2,"0");
+  const weekNames = ["日","一","二","三","四","五","六"];
+  let now = new Date();
+  let viewYear = now.getFullYear(), viewMonth = now.getMonth();
+  let selected = dateKey(now);
+
+  function dateKey(d){return `${d.getFullYear()}-${fmt2(d.getMonth()+1)}-${fmt2(d.getDate())}`;}
+  function dateFromKey(k){const [y,m,d]=k.split("-").map(Number);return new Date(y,m-1,d);}
+  function dayDiff(a,b){return Math.round((Date.UTC(b.getFullYear(),b.getMonth(),b.getDate())-Date.UTC(a.getFullYear(),a.getMonth(),a.getDate()))/86400000);}
+  function updateClock(){
+    const d = new Date();
+    $("clockTime").textContent = `${fmt2(d.getHours())}:${fmt2(d.getMinutes())}:${fmt2(d.getSeconds())}`;
+    $("clockDate").textContent = `${d.getFullYear()} 年 ${d.getMonth()+1} 月 ${d.getDate()} 日（星期${weekNames[d.getDay()]}）`;
+  }
+  function eventsFor(d){
+    const events=[];
+    const cheeseBase = new Date(2026,9,28);
+    const cheeseDiff = dayDiff(cheeseBase,d);
+    if(cheeseDiff>=0 && cheeseDiff%2===0){
+      events.push({type:"cheese",icon:"🧀",name:"起司陷阱",time:"12:00"});
+      events.push({type:"cheese",icon:"🧀",name:"起司陷阱",time:"22:00"});
+    }
+    if(d.getDay()===5) events.push({type:"medicine",icon:"🧪",name:"秘藥爭奪戰",time:"19:00（週五場，每人擇一）"});
+    if(d.getDay()===6) events.push({type:"medicine",icon:"🧪",name:"秘藥爭奪戰",time:"09:00（週六場，每人擇一）"});
+    if(d.getDay()===6) events.push({type:"guild",icon:"⚔️",name:"跨服／公會對決",time:"10:00 開始（持續至週日 10:00）"});
+    if(d.getDay()===0) events.push({type:"guild",icon:"⚔️",name:"跨服／公會對決",time:"10:00 結束"});
+    const ghoulBase = new Date(2026,9,29);
+    const ghoulDiff = dayDiff(ghoulBase,d);
+    if(ghoulDiff>=0 && ghoulDiff%3===0) events.push({type:"ghoul",icon:"🧟",name:"屍鬼圍城",time:"21:30（晚上）"});
+    return events;
+  }
+  function renderSelected(){
+    const d=dateFromKey(selected), events=eventsFor(d);
+    $("detailTitle").textContent=dateKey(d)===dateKey(new Date())?"今日活動":"當日活動";
+    $("detailDate").textContent=`${d.getFullYear()} 年 ${d.getMonth()+1} 月 ${d.getDate()} 日（星期${weekNames[d.getDay()]}）`;
+    const host=$("detailEvents");host.innerHTML="";
+    if(!events.length){host.innerHTML='<div class="no-event">這一天沒有排定上述固定活動。可以查看每日公會對決任務，提前準備資源與隊伍。</div>';return;}
+    events.forEach(e=>{
+      const item=document.createElement("div");item.className="activity";
+      const strong=document.createElement("strong");strong.textContent=`${e.icon} ${e.name}`;
+      const span=document.createElement("span");span.textContent=e.time;
+      item.append(strong,span);host.appendChild(item);
+    });
+  }
+  function renderCalendar(){
+    $("monthLabel").textContent=`${viewYear} 年 ${viewMonth+1} 月`;
+    const first=new Date(viewYear,viewMonth,1);
+    const start=new Date(viewYear,viewMonth,1-first.getDay());
+    const host=$("calendarDays");host.innerHTML="";
+    for(let i=0;i<42;i++){
+      const d=new Date(start);d.setDate(start.getDate()+i);
+      const k=dateKey(d),events=eventsFor(d);
+      const btn=document.createElement("button");btn.type="button";
+      btn.className="day"+(d.getMonth()!==viewMonth?" outside":"")+(k===dateKey(new Date())?" today":"")+(k===selected?" selected":"");
+      btn.setAttribute("aria-label",`${k}，${events.length?events.map(e=>e.name+" "+e.time).join("、"):"無固定活動"}`);
+      const num=document.createElement("span");num.className="day-num";num.textContent=d.getDate();btn.appendChild(num);
+      const list=document.createElement("div");list.className="day-events";
+      events.slice(0,3).forEach(e=>{const chip=document.createElement("span");chip.className="day-event "+e.type;chip.textContent=e.type==="cheese"?"起司  "+e.time:e.type==="medicine"?"秘藥 "+(d.getDay()===5?"19:00":"09:00"):e.type==="ghoul"?"屍鬼 21:30":"公會對決";list.appendChild(chip);});
+      btn.appendChild(list);btn.addEventListener("click",()=>{selected=k;renderCalendar();renderSelected();});host.appendChild(btn);
+    }
+    renderSelected();
+  }
+  $("prevMonth").addEventListener("click",()=>{viewMonth--;if(viewMonth<0){viewMonth=11;viewYear--;}renderCalendar();});
+  $("nextMonth").addEventListener("click",()=>{viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++;}renderCalendar();});
+  $("todayButton").addEventListener("click",()=>{const d=new Date();viewYear=d.getFullYear();viewMonth=d.getMonth();selected=dateKey(d);renderCalendar();});
+  updateClock();setInterval(updateClock,1000);renderCalendar();
+  // 跨過午夜時，自動將選取日期與月曆切回今天。
+  let lastDate=dateKey(new Date());
+  setInterval(()=>{const d=new Date(),k=dateKey(d);if(k!==lastDate){lastDate=k;selected=k;viewYear=d.getFullYear();viewMonth=d.getMonth();renderCalendar();}},15000);
+})();
+</script>
+</body>
+</html>
