@@ -22,7 +22,7 @@ button{font:inherit;cursor:pointer}
 .section-sub{margin:-7px 0 14px;color:var(--muted);font-size:13px}
 .event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .event-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
-.event-image{height:172px;background:#dce6f3;overflow:hidden}.event-image img{width:100%;height:100%;object-fit:cover;display:block}
+.event-image{width:100%;height:190px;overflow:hidden;background:#14213b;display:block;line-height:0}.event-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .event-body{padding:16px}.event-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .event-heading h3{margin:0;font-size:19px}.tag{font-size:11px;font-weight:800;padding:5px 9px;border-radius:99px;background:#f1f3f8;color:#56647a;white-space:nowrap}
 .event-card.cheese{border-top:4px solid var(--gold)}.event-card.medicine{border-top:4px solid var(--purple)}.event-card.ghoul{border-top:4px solid var(--red)}.event-card.hunt{border-top:4px solid #278b83}
@@ -101,6 +101,62 @@ body{padding-bottom:0}
  .week-grid{grid-template-columns:1fr;gap:10px}.week-card{border-radius:12px}.week-banner{padding:9px;font-size:14px}.week-icon{height:56px;font-size:34px}.week-card .week-icon{height:54px}.week-card h3{font-size:15px;margin:8px 6px 5px}.week-card .week-content{padding:0 12px 13px}.week-card .week-lead{font-size:12px;padding:8px 9px}.week-card ul{gap:6px}.week-card li{font-size:12px;line-height:1.55}.note{font-size:11px;line-height:1.7;padding:10px}
  .survival-toolbar{display:grid;grid-template-columns:1fr;gap:8px}.survival-nav{justify-content:space-between}.survival-nav button{flex:1;padding:9px 6px;font-size:12px}.survival-week-label{text-align:center;font-size:14px;min-width:0;grid-row:1}.survival-current{text-align:center;font-size:11px}.survival-table{min-width:780px}.survival-table th{padding:10px 6px;font-size:12px}.survival-table td{padding:10px 6px;font-size:11px}.survival-footnote{font-size:11px;padding:9px 10px}
  footer{font-size:11px;padding:18px 5px 4px}
+}
+
+
+/* v8：手機優先、長輩友善字級與活動圖片修正 */
+.event-card .event-image,
+.event-card .event-banner,
+.event-card .image-wrap,
+.event-card .event-cover {
+  width:100%; height:clamp(150px, 42vw, 220px);
+  overflow:hidden; background:#14213b; line-height:0;
+}
+.event-card .event-image img,
+.event-card .event-banner img,
+.event-card .image-wrap img,
+.event-card .event-cover img {
+  display:block; width:100%; height:100%;
+  object-fit:cover; object-position:center center;
+}
+/* 屍鬼圍城圖片置中裁切，填滿圖片框，避免上下或左右白邊 */
+.event-card.ghoul img,
+img[src*="ghoul_siege"] {
+  width:100%; height:100%; object-fit:cover; object-position:center;
+  display:block; background:#14213b;
+}
+@media (max-width: 700px) {
+  body { font-size:18px; line-height:1.65; }
+  p, li, .event-desc, .event-meta, .day-detail, .calendar-detail,
+  .hint, .notice, .survival-note { font-size:17px !important; line-height:1.7 !important; }
+  h1 { font-size:clamp(27px, 7vw, 36px) !important; }
+  h2, .section-title { font-size:24px !important; line-height:1.35 !important; }
+  h3, .event-card h3, .day-card h3 { font-size:21px !important; line-height:1.4 !important; }
+  .event-card { border-radius:16px; }
+  .event-card .event-desc { padding-top:8px; }
+  .event-meta { gap:7px; }
+  .event-grid { grid-template-columns:1fr !important; gap:16px !important; }
+  .event-card .event-image,
+  .event-card .event-banner,
+  .event-card .image-wrap,
+  .event-card .event-cover { height:190px; }
+  .event-card .event-body { padding:16px !important; }
+  .event-card .tag, .tag { font-size:15px !important; padding:5px 10px; }
+  .sidebar a, .sidebar button, nav a { font-size:17px !important; }
+  .bottom-nav a, .bottom-nav button { font-size:14px !important; }
+  .day-card, .weekday-card { padding:15px !important; }
+  .day-card li, .weekday-card li { font-size:17px !important; }
+  .calendar-grid button, .calendar-grid .day { min-height:44px; font-size:16px !important; }
+  .survival-table, .survival-grid { font-size:16px !important; }
+  .survival-table th, .survival-table td { padding:10px 8px !important; }
+  button, .nav-link { min-height:44px; }
+}
+@media (max-width: 380px) {
+  body { font-size:17px; }
+  .event-card .event-image,
+  .event-card .event-banner,
+  .event-card .image-wrap,
+  .event-card .event-cover { height:165px; }
 }
 
 </style>
