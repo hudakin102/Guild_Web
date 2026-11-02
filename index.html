@@ -20,12 +20,12 @@ button{font:inherit;cursor:pointer}
 .wrap{max-width:1240px;margin:24px auto;padding:0 18px 36px}
 .section{margin-top:26px}.section-title{display:flex;align-items:center;gap:10px;margin:0 0 14px;font-size:22px;color:#183657}.section-title .ico{width:34px;height:34px;border-radius:10px;background:#e0eafa;display:grid;place-items:center}
 .section-sub{margin:-7px 0 14px;color:var(--muted);font-size:13px}
-.event-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .event-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
 .event-image{height:172px;background:#dce6f3;overflow:hidden}.event-image img{width:100%;height:100%;object-fit:cover;display:block}
 .event-body{padding:16px}.event-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .event-heading h3{margin:0;font-size:19px}.tag{font-size:11px;font-weight:800;padding:5px 9px;border-radius:99px;background:#f1f3f8;color:#56647a;white-space:nowrap}
-.event-card.cheese{border-top:4px solid var(--gold)}.event-card.medicine{border-top:4px solid var(--purple)}.event-card.ghoul{border-top:4px solid var(--red)}
+.event-card.cheese{border-top:4px solid var(--gold)}.event-card.medicine{border-top:4px solid var(--purple)}.event-card.ghoul{border-top:4px solid var(--red)}.event-card.hunt{border-top:4px solid #278b83}
 .event-meta{display:grid;gap:8px;margin:13px 0;color:#31435d;font-size:14px}.event-meta b{color:#172c48}
 .event-desc{margin:0;padding:11px 12px;background:#f5f7fb;border-radius:10px;font-size:13px;line-height:1.65;color:#4d5c70}
 .calendar-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.75fr);gap:16px}
@@ -40,22 +40,22 @@ button{font:inherit;cursor:pointer}
 .day:hover{border-color:#8ba9ce;background:#f7faff}.day.outside{background:#f7f8fa;color:#a5afbd}.day.today{box-shadow:inset 0 0 0 2px #3478c8}.day.selected{background:#edf5ff;border-color:#3478c8}
 .day-num{font-size:12px;font-weight:800}.day-events{display:grid;gap:3px;margin-top:5px}
 .day-event{display:block;padding:3px 4px;border-radius:4px;font-size:10px;line-height:1.25;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#fff}
-.day-event.cheese{background:#df941b}.day-event.medicine{background:#8450c4}.day-event.ghoul{background:#d84b50}.day-event.guild{background:#2878d0}
+.day-event.cheese{background:#df941b}.day-event.medicine{background:#8450c4}.day-event.ghoul{background:#d84b50}.day-event.hunt{background:#278b83}
 .calendar-legend{display:flex;gap:12px;flex-wrap:wrap;padding:0 13px 13px;color:#617087;font-size:11px}
 .legend-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
 .detail-body{padding:15px}.detail-date{font-size:13px;color:var(--muted);margin-bottom:12px}
 .activity{padding:12px 0;border-bottom:1px solid #edf0f5}.activity:last-child{border:0}.activity strong{display:block;font-size:14px}.activity span{display:block;color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5}
 .no-event{font-size:13px;color:var(--muted);line-height:1.7;padding:12px 0}
-.week-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
-.week-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+.week-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.week-card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}.week-card .week-content{padding:0 15px 15px}.week-card .week-lead{font-size:12px;font-weight:800;color:#9b5b08;background:#fff5df;border-radius:8px;padding:8px 10px;margin:0 0 10px}.week-card ul{list-style:none;padding:0;margin:0;display:grid;gap:7px}.week-card li{font-size:12px;line-height:1.5;color:#43536a;padding-left:18px;position:relative}.week-card li:before{content:"✓";position:absolute;left:0;color:#25875b;font-weight:900}.week-card .group-label{font-size:10px;font-weight:900;color:#75849a;letter-spacing:.08em;margin:10px 0 6px}.week-card .week-icon{height:64px;font-size:38px}.week-card h3{font-size:17px;margin:10px 8px 8px}.week-card .week-banner{font-size:15px}
 .week-banner{padding:10px;color:#fff;font-size:14px;font-weight:900;text-align:center}
 .week-card:nth-child(1) .week-banner{background:#2674c9}.week-card:nth-child(2) .week-banner{background:#25875b}.week-card:nth-child(3) .week-banner{background:#8152bd}.week-card:nth-child(4) .week-banner{background:#dc8120}.week-card:nth-child(5) .week-banner{background:#d94b58}.week-card:nth-child(6) .week-banner{background:#1689a6}
 .week-icon{height:94px;display:grid;place-items:center;background:linear-gradient(135deg,#f4f7fc,#e8eef7);font-size:50px}
 .week-card h3{font-size:15px;text-align:center;margin:12px 6px 5px}.week-card p{font-size:11px;line-height:1.5;color:var(--muted);text-align:center;margin:0 8px 13px}
 .note{margin-top:14px;background:#eaf3fc;border:1px solid #d4e5f7;border-radius:10px;padding:10px 12px;font-size:12px;color:#42617f;line-height:1.6}
 footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
-@media(max-width:900px){.calendar-layout{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:600px){.hero-inner{align-items:flex-start;flex-direction:column}.clock{width:100%;text-align:left}.event-grid{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:0 11px 28px}.calendar-content{padding:7px}.day{min-height:68px;padding:5px 3px}.day-event{font-size:9px;padding:3px 2px}.weekdays{gap:2px}.days{gap:2px}.section-title{font-size:19px}}
+@media(max-width:900px){.calendar-layout{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.hero-inner{align-items:flex-start;flex-direction:column}.clock{width:100%;text-align:left}.event-grid{grid-template-columns:1fr}.week-grid{grid-template-columns:1fr}.wrap{padding:0 11px 28px}.calendar-content{padding:7px}.day{min-height:68px;padding:5px 3px}.day-event{font-size:9px;padding:3px 2px}.weekdays{gap:2px}.days{gap:2px}.section-title{font-size:19px}}
 
 .survival-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
 .survival-nav{display:flex;align-items:center;gap:8px}
@@ -80,6 +80,29 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
 .survival-footnote{margin-top:12px;background:#fff8e9;border:1px solid #f0dfb9;border-radius:10px;padding:11px 13px;color:#76551b;font-size:12px;line-height:1.7}
 @media(max-width:600px){.survival-week-label{min-width:140px;font-size:13px}.survival-nav button{padding:7px 9px;font-size:12px}}
 
+
+/* 手機優先導覽：桌面側邊欄、手機底部固定分頁 */
+html{scroll-behavior:smooth;scroll-padding-top:18px}
+body{padding-bottom:0}
+.sidebar-nav{position:fixed;z-index:20;left:18px;top:176px;width:176px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px;box-shadow:var(--shadow)}
+.sidebar-nav .nav-caption{font-size:11px;font-weight:900;color:#8794a7;letter-spacing:.08em;padding:7px 10px 9px}
+.sidebar-nav a,.mobile-nav a{display:flex;align-items:center;gap:10px;text-decoration:none;color:#40536d;font-size:14px;font-weight:800;padding:12px 11px;border-radius:10px;transition:.15s}
+.sidebar-nav a:hover,.sidebar-nav a.active{background:#eaf2fc;color:#1d5d9b}
+.sidebar-nav a .nav-icon,.mobile-nav a .nav-icon{font-size:19px;width:23px;text-align:center}
+.wrap{max-width:1180px;margin:24px 24px 24px 218px;padding:0 18px 36px}
+.section{scroll-margin-top:22px}
+.mobile-nav{display:none}
+@media(max-width:900px){.sidebar-nav{display:none}.wrap{max-width:100%;margin:18px auto;padding:0 14px 100px}.mobile-nav{position:fixed;z-index:50;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:7px 8px calc(7px + env(safe-area-inset-bottom));background:#102744f5;border-top:1px solid #ffffff30;box-shadow:0 -8px 25px #10274425;backdrop-filter:blur(12px)}.mobile-nav a{flex-direction:column;justify-content:center;gap:2px;color:#d7e5f6;font-size:10px;padding:5px 2px;border-radius:9px}.mobile-nav a .nav-icon{font-size:20px;width:auto}.mobile-nav a.active{background:#ffffff20;color:#ffd77d}}
+@media(max-width:600px){
+ .hero{padding:17px 15px 15px}.hero-inner{gap:12px;align-items:stretch}.brand{gap:11px}.crest{width:46px;height:46px;border-radius:13px;font-size:25px}.brand h1{font-size:25px}.brand p{font-size:12px}.clock{min-width:0;padding:8px 11px;border-radius:11px}.clock-label{font-size:10px}.clock-time{font-size:18px}.clock-date{font-size:11px}
+ .wrap{margin:12px auto;padding:0 10px 105px}.section{margin-top:21px}.section-title{font-size:18px;margin-bottom:10px;gap:8px}.section-title .ico{width:30px;height:30px;font-size:16px}.section-sub{font-size:12px;line-height:1.55;margin:-3px 0 11px}
+ .event-grid{grid-template-columns:1fr;gap:12px}.event-card{border-radius:13px}.event-image{height:145px}.event-body{padding:12px}.event-heading h3{font-size:17px}.event-meta{font-size:13px;gap:6px;margin:10px 0}.event-desc{font-size:12px;line-height:1.7;padding:10px}
+ .calendar-layout{grid-template-columns:1fr;gap:10px}.panel{border-radius:13px}.panel-head{padding:10px 12px}.panel-head h3{font-size:15px}.calendar-content{padding:6px}.weekdays div{font-size:10px;padding:6px 0}.days{gap:2px}.day{min-height:61px;padding:4px 2px;border-radius:6px}.day-num{font-size:11px}.day-events{gap:2px;margin-top:3px}.day-event{font-size:8px;padding:2px 2px}.calendar-legend{gap:8px;padding:0 9px 10px;font-size:10px}.detail-body{padding:12px}
+ .week-grid{grid-template-columns:1fr;gap:10px}.week-card{border-radius:12px}.week-banner{padding:9px;font-size:14px}.week-icon{height:56px;font-size:34px}.week-card .week-icon{height:54px}.week-card h3{font-size:15px;margin:8px 6px 5px}.week-card .week-content{padding:0 12px 13px}.week-card .week-lead{font-size:12px;padding:8px 9px}.week-card ul{gap:6px}.week-card li{font-size:12px;line-height:1.55}.note{font-size:11px;line-height:1.7;padding:10px}
+ .survival-toolbar{display:grid;grid-template-columns:1fr;gap:8px}.survival-nav{justify-content:space-between}.survival-nav button{flex:1;padding:9px 6px;font-size:12px}.survival-week-label{text-align:center;font-size:14px;min-width:0;grid-row:1}.survival-current{text-align:center;font-size:11px}.survival-table{min-width:780px}.survival-table th{padding:10px 6px;font-size:12px}.survival-table td{padding:10px 6px;font-size:11px}.survival-footnote{font-size:11px;padding:9px 10px}
+ footer{font-size:11px;padding:18px 5px 4px}
+}
+
 </style>
 </head>
 <body>
@@ -89,35 +112,55 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
     <div class="clock" aria-live="off"><div class="clock-label">◷　現在時間</div><div class="clock-time" id="clockTime">載入中…</div><div class="clock-date" id="clockDate"></div></div>
   </div>
 </header>
+
+<nav class="sidebar-nav" aria-label="網站分頁導覽">
+  <div class="nav-caption">快速前往</div>
+  <a href="#events" data-section="events"><span class="nav-icon">📣</span>活動介紹</a>
+  <a href="#calendar" data-section="calendar"><span class="nav-icon">🗓️</span>活動日曆</a>
+  <a href="#guild-duel" data-section="guild-duel"><span class="nav-icon">⚔️</span>公會對決</a>
+  <a href="#survival" data-section="survival"><span class="nav-icon">🏆</span>生存之戰</a>
+</nav>
+<nav class="mobile-nav" aria-label="手機分頁導覽">
+  <a href="#events" data-section="events"><span class="nav-icon">📣</span>活動</a>
+  <a href="#calendar" data-section="calendar"><span class="nav-icon">🗓️</span>日曆</a>
+  <a href="#guild-duel" data-section="guild-duel"><span class="nav-icon">⚔️</span>公會對決</a>
+  <a href="#survival" data-section="survival"><span class="nav-icon">🏆</span>生存之戰</a>
+</nav>
 <main class="wrap">
-  <section class="section">
+  <section class="section" id="events">
     <h2 class="section-title"><span class="ico">📣</span>重要活動介紹</h2>
     <div class="event-grid">
       <article class="event-card cheese">
         <div class="event-image"><img src="images/cheese_trap.jpg" alt="起司陷阱活動插畫"></div>
         <div class="event-body"><div class="event-heading"><h3>🧀 起司陷阱</h3><span class="tag">每兩天一次</span></div>
           <div class="event-meta"><div>◷　時間：<b>12:00 / 22:00</b></div><div>↻　頻率：<b>每兩天一次</b></div></div>
-          <p class="event-desc">在指定時間內參與活動，爭取獎勵！中午或晚上擇方便的時段參加，別忘了確認當天是否開放。</p>
+          <p class="event-desc">每人只能參加早上或晚上其中一場。記得勾選「離線參與」，離線時也有機會參與成功；在線上的成員可以召集。<br><br>個人獎勵累積達 <b>47.5M</b> 即可拿滿，達標就可以停手，不要為了多打而持續損兵。</p>
         </div>
       </article>
       <article class="event-card medicine">
         <div class="event-image"><img src="images/medicine_battle.jpg" alt="秘藥爭奪戰活動插畫"></div>
-        <div class="event-body"><div class="event-heading"><h3>🧪 秘藥爭奪戰</h3><span class="tag">每週一次</span></div>
-          <div class="event-meta"><div>◷　週五：<b>19:00</b></div><div>◷　週六：<b>09:00</b></div><div>♟　參與限制：<b>每人只能參加其中一場</b></div></div>
-          <p class="event-desc">週五晚上與週六早上兩個時段擇一參加，請勿重複報名或進場，讓其他成員也有參與機會。</p>
+        <div class="event-body"><div class="event-heading"><h3>🧪 秘藥爭奪戰</h3><span class="tag">每週兩場・擇一</span></div>
+          <div class="event-meta"><div>◷　週五晚上：<b>19:00</b></div><div>◷　週六早上：<b>09:00</b></div><div>♟　報名方式：<b>提前找立宮報名可參加的場次</b></div></div>
+          <p class="event-desc">每週有兩場，請提前向立宮報名自己能參加的時間。記得準時上線參戰才有獎勵！主要玩法是佔領場內領地及與其他玩家戰鬥；若打不過對方，也可以直接去採集。活動場內的士兵損失不影響原有兵力，放心盡量參與。</p>
         </div>
       </article>
       <article class="event-card ghoul">
         <div class="event-image"><img src="images/ghoul_siege.jpg" alt="屍鬼圍城活動插畫"></div>
         <div class="event-body"><div class="event-heading"><h3>🧟 屍鬼圍城</h3><span class="tag">每三天一次</span></div>
           <div class="event-meta"><div>◷　時間：<b>21:30（晚上）</b></div><div>↻　頻率：<b>從 10/29 起，每三天一次</b></div></div>
-          <p class="event-desc">屍鬼來襲時，請依公會公告安排隊伍與防守。活動開始前記得召回採集隊伍，並確認主力部隊已準備完成。</p>
+          <p class="event-desc">共有 <b>20 波屍鬼</b> 攻打大家的教堂，活動前記得開啟城防，並召回所有採集隊伍。防守主要看第一隊戰力，目前三級屍鬼以第一隊 <b>5.2M</b> 即可守滿 20 波；有餘力的成員可派第 2、3、4 隊支援鄰居防守。</p>
+        </div>
+      </article>
+      <article class="event-card hunt">
+        <div class="event-body"><div class="event-heading"><h3>🏹 圍獵之戰</h3><span class="tag">每週二</span></div>
+          <div class="event-meta"><div>📅　活動日：<b>每個星期二</b></div><div>🤝　參與方式：<b>全公會一起合作</b></div><div>🎁　目標：<b>地圖屍鬼五波</b></div></div>
+          <p class="event-desc">全公會一起攻打地圖上的屍鬼，累積打滿五波即可領取獎勵。這個活動不分誰打得多，不用搶傷害，看到屍鬼就幫忙打就好！大家一起打得越快，活動就能越早結束。</p>
         </div>
       </article>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="calendar">
     <h2 class="section-title"><span class="ico">🗓️</span>活動日曆</h2>
     <p class="section-sub">日期會依照電腦／手機的目前日期自動更新；點選日期可查看當天活動。</p>
     <div class="calendar-layout">
@@ -131,7 +174,7 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
           <span><i class="legend-dot" style="background:#df941b"></i>起司陷阱</span>
           <span><i class="legend-dot" style="background:#8450c4"></i>秘藥爭奪戰</span>
           <span><i class="legend-dot" style="background:#d84b50"></i>屍鬼圍城</span>
-          <span><i class="legend-dot" style="background:#2878d0"></i>跨服／公會對決</span>
+          <span><i class="legend-dot" style="background:#278b83"></i>圍獵之戰</span>
         </div>
       </div>
       <aside class="panel">
@@ -142,20 +185,49 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
     <div class="note">※ 起司陷阱以 2026/10/28 為週期基準，每兩天 12:00、22:00；屍鬼圍城自 2026/10/29 起，每三天 21:30。若遊戲實際公告調整，請以遊戲內公告為準。</div>
   </section>
 
-  <section class="section">
-    <h2 class="section-title"><span class="ico">⚔️</span>每日公會對決</h2>
-    <p class="section-sub">每日對應不同任務項目，記得依照當天主題安排升級與資源。</p>
+  <section class="section" id="guild-duel">
+    <h2 class="section-title"><span class="ico">⚔️</span>公會對決｜每日積分攻略</h2>
+    <p class="section-sub">依照每日主題安排資源與加速道具；紅色重點是當日建議優先完成的方向。</p>
     <div class="week-grid">
-      <article class="week-card"><div class="week-banner">星期一</div><div class="week-icon">🐦‍⬛</div><h3>烏鴉升級</h3><p>提升烏鴉等級，增加資源收益。</p></article>
-      <article class="week-card"><div class="week-banner">星期二</div><div class="week-icon">🏰</div><h3>建築升級</h3><p>升級各種建築，強化城池實力。</p></article>
-      <article class="week-card"><div class="week-banner">星期三</div><div class="week-icon">🔮</div><h3>科技升級</h3><p>研究科技，提升整體戰鬥力。</p></article>
-      <article class="week-card"><div class="week-banner">星期四</div><div class="week-icon">🛡️</div><h3>英雄升級</h3><p>提升英雄等級與技能效果。</p></article>
-      <article class="week-card"><div class="week-banner">星期五</div><div class="week-icon">🪖</div><h3>士兵生產</h3><p>生產更多士兵，擴充軍力。</p></article>
-      <article class="week-card"><div class="week-banner">星期六</div><div class="week-icon">⚔️</div><h3>士兵戰爭</h3><p>參與戰鬥，爭取公會對決積分。</p></article>
+      <article class="week-card"><div class="week-banner">星期一｜巫鴉強化</div><div class="week-icon">🐦‍⬛</div><h3>巫鴉強化</h3><div class="week-content">
+        <p class="week-lead">★ 強烈建議：優先升級烏鴉等級</p>
+        <div class="group-label">可累積積分項目</div><ul>
+          <li>英雄抗毒素（英雄等級升級）</li><li>獵鷹塔任務（依時間計算，前一天先屯滿事件）</li><li>巫鴉精華</li><li>巫鴉果實</li><li>採集糧食／木材／藥材：隊伍有空就派去採集，完成可得積分，提前召回也有積分</li>
+        </ul></div></article>
+      <article class="week-card"><div class="week-banner">星期二｜建設領地</div><div class="week-icon">🏰</div><h3>建設領地</h3><div class="week-content">
+        <p class="week-lead">★ 強烈建議：把握當天大量升級建築</p><div class="group-label">可累積積分項目</div><ul>
+          <li>建造加速</li><li>建築戰力</li><li>UR（金色）秘密行動：留卷刷，只有 UR 會加積分</li><li>UR（金色）馬車：留卷刷，只有 UR 會加積分</li><li>倖存者招募：每週安排在這天抽一次</li>
+        </ul></div></article>
+      <article class="week-card"><div class="week-banner">星期三｜科技研發</div><div class="week-icon">🔬</div><h3>科技研發</h3><div class="week-content">
+        <p class="week-lead">★ 強烈建議：把握當天大量升級科技</p><div class="group-label">可累積積分項目</div><ul>
+          <li>烏鴉寶箱：平常先存著，這天一次開好開滿</li><li>科研加速</li><li>科研戰力</li><li>研究捲軸（公會對決、馬車運輸、精英部隊）</li><li>獵鷹塔任務：依時間計算，前一天先屯滿事件</li>
+        </ul></div></article>
+      <article class="week-card"><div class="week-banner">星期四｜英雄提升</div><div class="week-icon">🛡️</div><h3>英雄提升</h3><div class="week-content">
+        <p class="week-lead">★ 強烈建議：集中升級英雄</p><div class="group-label">可累積積分項目</div><ul>
+          <li>英雄招募：每週安排在這天抽一次</li><li>英雄抗毒素（英雄等級升級）</li><li>UR／SSR／SR 碎片：每週安排在這天升一次</li><li>技能徽章：每週安排在這天升一次</li>
+        </ul></div></article>
+      <article class="week-card"><div class="week-banner">星期五｜戰爭準備</div><div class="week-icon">🪖</div><h3>戰爭準備</h3><div class="week-content">
+        <p class="week-lead">★ 強烈建議：大量生產士兵</p><div class="group-label">可累積積分項目</div><ul>
+          <li>訓練士兵</li><li>訓練加速</li><li>建造加速、建築戰力</li><li>科研加速、科研戰力</li><li>獵鷹塔任務：依時間計算，前一天先屯滿事件</li>
+        </ul></div></article>
+      <article class="week-card"><div class="week-banner">星期六｜突襲敵軍</div><div class="week-icon">⚔️</div><h3>突襲敵軍</h3><div class="week-content">
+        <p class="week-lead">★ 強烈建議：積極參與戰鬥、爭取擊殺積分</p><div class="group-label">可累積積分項目</div><ul>
+          <li>訓練加速、建築加速、科研加速</li><li>擊殺士兵：儘量出門打架才有積分</li><li>士兵陣亡：兵營滿時可趁這天消兵換積分</li><li>治療加速：有加速就用，平常較少用到，留著也可在這天換積分</li><li>UR（金色）秘密行動、UR（金色）馬車：留卷刷，只有 UR 會加積分</li>
+        </ul></div></article>
+      <article class="week-card"><div class="week-banner">星期日｜休息／裝備日</div><div class="week-icon">🧰</div><h3>沒有公會對決</h3><div class="week-content">
+        <p class="week-lead" style="color:#365b83;background:#edf4fc">星期日沒有公會對決活動</p><div class="group-label">資源安排建議</div><ul>
+          <li>裝備升級建議留到週六、週日，有裝備升級獎勵時再集中處理</li><li>整理下一週要用的加速、招募券與活動資源</li>
+        </ul></div></article>
+    </div>
+    <div class="note"><b>📌 公會對決重要提醒</b><br>
+      1. 每日個人公會獎勵有上限；部分資源會在不同天重複計分，例如「英雄抗毒素」星期一、星期四都有。若星期一只升烏鴉就已經拿滿個人獎勵，可把英雄抗毒素留到星期四。<br>
+      2. 積分可以超過個人獎勵上限，因為每天仍要和對手比較公會總積分；建議先確保每日個人獎勵拿滿，再視公會戰況繼續累積。<br>
+      3. <b>最重要：安排升級前，務必配合當天「生存之戰」的四小時輪替時段</b>，不要只看公會對決日期就一次把資源用完。<br>
+      4. 裝備升級留到週六、週日，有裝備升級獎勵時再升級更划算。
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="survival">
     <h2 class="section-title"><span class="ico">🏆</span>生存之戰</h2>
     <p class="section-sub">獎勵活動每 4 小時輪替一次；以下依伺服器每日 10:00 重置時間排列，獨立按週查看。</p>
     <div class="survival-toolbar">
@@ -204,8 +276,7 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
     }
     if(d.getDay()===5) events.push({type:"medicine",icon:"🧪",name:"秘藥爭奪戰",time:"19:00（週五場，每人擇一）"});
     if(d.getDay()===6) events.push({type:"medicine",icon:"🧪",name:"秘藥爭奪戰",time:"09:00（週六場，每人擇一）"});
-    if(d.getDay()===6) events.push({type:"guild",icon:"⚔️",name:"跨服／公會對決",time:"10:00 開始（持續至週日 10:00）"});
-    if(d.getDay()===0) events.push({type:"guild",icon:"⚔️",name:"跨服／公會對決",time:"10:00 結束"});
+    if(d.getDay()===2) events.push({type:"hunt",icon:"🏹",name:"圍獵之戰",time:"每週二・全公會合作攻打五波屍鬼"});
     const ghoulBase = new Date(2026,9,29);
     const ghoulDiff = dayDiff(ghoulBase,d);
     if(ghoulDiff>=0 && ghoulDiff%3===0) events.push({type:"ghoul",icon:"🧟",name:"屍鬼圍城",time:"21:30（晚上）"});
@@ -216,7 +287,7 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
     $("detailTitle").textContent=dateKey(d)===dateKey(new Date())?"今日活動":"當日活動";
     $("detailDate").textContent=`${d.getFullYear()} 年 ${d.getMonth()+1} 月 ${d.getDate()} 日（星期${weekNames[d.getDay()]}）`;
     const host=$("detailEvents");host.innerHTML="";
-    if(!events.length){host.innerHTML='<div class="no-event">這一天沒有排定上述固定活動。可以查看每日公會對決任務，提前準備資源與隊伍。</div>';return;}
+    if(!events.length){host.innerHTML='<div class="no-event">這一天沒有排定上述固定活動。可以查看生存之戰與每日公會對決，提前準備資源與隊伍。</div>';return;}
     events.forEach(e=>{
       const item=document.createElement("div");item.className="activity";
       const strong=document.createElement("strong");strong.textContent=`${e.icon} ${e.name}`;
@@ -237,7 +308,7 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
       btn.setAttribute("aria-label",`${k}，${events.length?events.map(e=>e.name+" "+e.time).join("、"):"無固定活動"}`);
       const num=document.createElement("span");num.className="day-num";num.textContent=d.getDate();btn.appendChild(num);
       const list=document.createElement("div");list.className="day-events";
-      events.slice(0,3).forEach(e=>{const chip=document.createElement("span");chip.className="day-event "+e.type;chip.textContent=e.type==="cheese"?"起司  "+e.time:e.type==="medicine"?"秘藥 "+(d.getDay()===5?"19:00":"09:00"):e.type==="ghoul"?"屍鬼 21:30":"公會對決";list.appendChild(chip);});
+      events.slice(0,3).forEach(e=>{const chip=document.createElement("span");chip.className="day-event "+e.type;chip.textContent=e.type==="cheese"?"起司  "+e.time:e.type==="medicine"?"秘藥 "+(d.getDay()===5?"19:00":"09:00"):e.type==="ghoul"?"屍鬼 21:30":"圍獵之戰";list.appendChild(chip);});
       btn.appendChild(list);btn.addEventListener("click",()=>{selected=k;renderCalendar();renderSelected();});host.appendChild(btn);
     }
     renderSelected();
@@ -316,6 +387,20 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
   // 跨過午夜時，自動將選取日期與月曆切回今天。
   let lastDate=dateKey(new Date());
   setInterval(()=>{const d=new Date(),k=dateKey(d);if(k!==lastDate){lastDate=k;selected=k;viewYear=d.getFullYear();viewMonth=d.getMonth();renderCalendar();}},15000);
+  // 導覽分頁：依目前閱讀區塊標示桌面側欄／手機底部分頁。
+  const navLinks = [...document.querySelectorAll('[data-section]')];
+  const navSections = navLinks.map(a => document.getElementById(a.dataset.section)).filter(Boolean);
+  if ('IntersectionObserver' in window) {
+    const navObserver = new IntersectionObserver(entries => {
+      const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio-a.intersectionRatio)[0];
+      if (!visible) return;
+      navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === visible.target.id));
+    }, {rootMargin:'-18% 0px -62% 0px', threshold:[0,.1,.25,.5]});
+    navSections.forEach(section => navObserver.observe(section));
+  }
+  navLinks.forEach(a => a.addEventListener('click', () => {
+    navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === a.dataset.section));
+  }));
 })();
 </script>
 </body>
