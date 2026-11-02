@@ -56,6 +56,30 @@ button{font:inherit;cursor:pointer}
 footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
 @media(max-width:900px){.calendar-layout{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.hero-inner{align-items:flex-start;flex-direction:column}.clock{width:100%;text-align:left}.event-grid{grid-template-columns:1fr}.week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{padding:0 11px 28px}.calendar-content{padding:7px}.day{min-height:68px;padding:5px 3px}.day-event{font-size:9px;padding:3px 2px}.weekdays{gap:2px}.days{gap:2px}.section-title{font-size:19px}}
+
+.survival-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.survival-nav{display:flex;align-items:center;gap:8px}
+.survival-nav button{border:1px solid #cbd8e8;background:#fff;color:#234365;border-radius:8px;padding:8px 12px;font-weight:700}
+.survival-nav button:hover{background:#edf4fc;border-color:#8ba9ce}
+.survival-week-label{font-weight:900;color:#234365;min-width:190px;text-align:center}
+.survival-current{font-size:12px;color:#53708f;background:#eaf3fc;border:1px solid #d4e5f7;border-radius:9px;padding:8px 11px}
+.survival-table-wrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.survival-table{width:100%;min-width:850px;border-collapse:separate;border-spacing:0;text-align:center}
+.survival-table th{background:#203e65;color:#fff;padding:12px 8px;font-size:14px}
+.survival-table th:first-child{min-width:112px;border-radius:12px 0 0 0}
+.survival-table td{padding:12px 8px;border-right:1px solid #e8edf4;border-bottom:1px solid #e8edf4;font-size:13px}
+.survival-table tr:last-child td{border-bottom:0}
+.survival-table td:last-child,.survival-table th:last-child{border-right:0}
+.survival-table .time-cell{font-weight:800;color:#52647c;background:#f3f6fa;white-space:nowrap}
+.survival-task{font-weight:800;color:#263c58;white-space:nowrap}
+.survival-task.current{background:#fff3d8;box-shadow:inset 0 0 0 2px #e5a32b;color:#8a5700;position:relative}
+.survival-task.current:after{content:'目前時段';display:block;font-size:10px;color:#a56a08;margin-top:4px}
+.survival-table th.today-col{background:#2c6eaa}
+.survival-table td.today-col{background:#f2f8ff}
+.survival-table td.today-col.current{background:#fff0cc}
+.survival-footnote{margin-top:12px;background:#fff8e9;border:1px solid #f0dfb9;border-radius:10px;padding:11px 13px;color:#76551b;font-size:12px;line-height:1.7}
+@media(max-width:600px){.survival-week-label{min-width:140px;font-size:13px}.survival-nav button{padding:7px 9px;font-size:12px}}
+
 </style>
 </head>
 <body>
@@ -130,6 +154,27 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
       <article class="week-card"><div class="week-banner">星期六</div><div class="week-icon">⚔️</div><h3>士兵戰爭</h3><p>參與戰鬥，爭取公會對決積分。</p></article>
     </div>
   </section>
+
+  <section class="section">
+    <h2 class="section-title"><span class="ico">🏆</span>生存之戰</h2>
+    <p class="section-sub">獎勵活動每 4 小時輪替一次；以下依伺服器每日 10:00 重置時間排列，獨立按週查看。</p>
+    <div class="survival-toolbar">
+      <div class="survival-nav">
+        <button type="button" id="survivalPrev">‹ 上一週</button>
+        <button type="button" id="survivalThis">本週</button>
+        <button type="button" id="survivalNext">下一週 ›</button>
+      </div>
+      <div class="survival-week-label" id="survivalWeekLabel">載入中…</div>
+      <div class="survival-current" id="survivalCurrent">目前時段：載入中…</div>
+    </div>
+    <div class="survival-table-wrap">
+      <table class="survival-table" aria-label="生存之戰每週活動時段表">
+        <thead id="survivalHead"></thead>
+        <tbody id="survivalBody"></tbody>
+      </table>
+    </div>
+    <div class="survival-footnote">※ 每個遊戲日從上午 10:00 開始，至隔日上午 10:00 結束。凌晨 00:00～09:59 仍屬於前一天的遊戲日。每個項目持續 4 小時，五種項目依序輪迴。</div>
+  </section>
   <footer>公會活動中心 · 活動時間以遊戲內公告為準</footer>
 </main>
 <script>
@@ -201,6 +246,73 @@ footer{text-align:center;color:#728096;font-size:12px;padding:24px 8px 4px}
   $("nextMonth").addEventListener("click",()=>{viewMonth++;if(viewMonth>11){viewMonth=0;viewYear++;}renderCalendar();});
   $("todayButton").addEventListener("click",()=>{const d=new Date();viewYear=d.getFullYear();viewMonth=d.getMonth();selected=dateKey(d);renderCalendar();});
   updateClock();setInterval(updateClock,1000);renderCalendar();
+  // 生存之戰：五種項目跨週連續輪迴，不會每週重置；遊戲日以每天 10:00 為界。
+  // 基準週：2026/11/02（星期一）10:00 的第一個時段為「英雄提升」。
+  const survivalTasks = [
+    {name:"英雄提升", icon:"🦸"},
+    {name:"建設領地", icon:"🏰"},
+    {name:"訓練士兵", icon:"🪖"},
+    {name:"研發科技", icon:"🔬"},
+    {name:"烏鴉強化", icon:"🐦‍⬛"}
+  ];
+  const survivalSlots = ["10:00～14:00","14:00～18:00","18:00～22:00","22:00～02:00","02:00～06:00","06:00～10:00"];
+  const survivalWeekNames = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"];
+  let survivalWeekStart = getSurvivalWeekStart(new Date());
+  function getSurvivalDay(d){
+    const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());
+    if(d.getHours()<10) x.setDate(x.getDate()-1);
+    return x;
+  }
+  function mondayOf(d){const x=new Date(d.getFullYear(),d.getMonth(),d.getDate());const offset=(x.getDay()+6)%7;x.setDate(x.getDate()-offset);return x;}
+  function getSurvivalWeekStart(d){return mondayOf(getSurvivalDay(d));}
+  function addDays(d,n){const x=new Date(d);x.setDate(x.getDate()+n);return x;}
+  function shortDate(d){return `${d.getMonth()+1}/${d.getDate()}`;}
+  // 以固定基準日計算累積時段，確保跨週仍接續前一週的輪迴順序。
+  const survivalAnchorDay = new Date(2026,10,2); // 2026/11/02 星期一
+  function survivalTaskIndex(gameDay, row){
+    const dayNumber=Math.round((new Date(gameDay.getFullYear(),gameDay.getMonth(),gameDay.getDate())-survivalAnchorDay)/86400000);
+    return ((dayNumber+row)%5+5)%5;
+  }
+  function renderSurvivalWeek(){
+    const now=new Date(), logicalDay=getSurvivalDay(now), currentWeek=mondayOf(logicalDay);
+    const dayOffset=Math.round((logicalDay-currentWeek)/86400000);
+    const slotIndex=now.getHours()<2?3:now.getHours()<6?4:now.getHours()<10?5:now.getHours()<14?0:now.getHours()<18?1:now.getHours()<22?2:3;
+    const isCurrentWeek=survivalWeekStart.getTime()===currentWeek.getTime();
+    const end=addDays(survivalWeekStart,6);
+    $("survivalWeekLabel").textContent=`${survivalWeekStart.getFullYear()} 年 ${shortDate(survivalWeekStart)}～${shortDate(end)}`;
+    const currentTask=survivalTasks[survivalTaskIndex(logicalDay,slotIndex)];
+    $("survivalCurrent").textContent=isCurrentWeek?`目前遊戲日：${survivalWeekNames[dayOffset]}｜${survivalSlots[slotIndex]}・${currentTask.name}`:`目前進行：${survivalWeekNames[dayOffset]} ${survivalSlots[slotIndex]}・${currentTask.name}`;
+    const head=$("survivalHead");head.innerHTML="";
+    const hr=document.createElement("tr");
+    const corner=document.createElement("th");corner.textContent="時間／星期";hr.appendChild(corner);
+    for(let day=0;day<7;day++){
+      const date=addDays(survivalWeekStart,day),th=document.createElement("th");
+      th.textContent=`${survivalWeekNames[day]} ${shortDate(date)}`;
+      if(isCurrentWeek&&day===dayOffset)th.classList.add("today-col");
+      hr.appendChild(th);
+    }
+    head.appendChild(hr);
+    const body=$("survivalBody");body.innerHTML="";
+    survivalSlots.forEach((slot,row)=>{
+      const tr=document.createElement("tr"),time=document.createElement("td");
+      time.className="time-cell";time.textContent=slot;tr.appendChild(time);
+      for(let day=0;day<7;day++){
+        const date=addDays(survivalWeekStart,day);
+        const td=document.createElement("td"),task=survivalTasks[survivalTaskIndex(date,row)];
+        td.className="survival-task";td.textContent=`${task.icon} ${task.name}`;
+        if(isCurrentWeek&&day===dayOffset)td.classList.add("today-col");
+        if(isCurrentWeek&&day===dayOffset&&row===slotIndex)td.classList.add("current");
+        tr.appendChild(td);
+      }
+      body.appendChild(tr);
+    });
+  }
+  $("survivalPrev").addEventListener("click",()=>{survivalWeekStart=addDays(survivalWeekStart,-7);renderSurvivalWeek();});
+  $("survivalNext").addEventListener("click",()=>{survivalWeekStart=addDays(survivalWeekStart,7);renderSurvivalWeek();});
+  $("survivalThis").addEventListener("click",()=>{survivalWeekStart=getSurvivalWeekStart(new Date());renderSurvivalWeek();});
+  renderSurvivalWeek();
+  setInterval(renderSurvivalWeek,15000);
+
   // 跨過午夜時，自動將選取日期與月曆切回今天。
   let lastDate=dateKey(new Date());
   setInterval(()=>{const d=new Date(),k=dateKey(d);if(k!==lastDate){lastDate=k;selected=k;viewYear=d.getFullYear();viewMonth=d.getMonth();renderCalendar();}},15000);
